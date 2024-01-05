@@ -10,9 +10,9 @@ const Tshirts = () => {
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-wrap -m-4 justify-center  ">
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -21,9 +21,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -32,9 +32,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -43,9 +43,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -54,9 +54,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -65,9 +65,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -76,9 +76,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
@@ -87,9 +87,9 @@ const Tshirts = () => {
                 </div>
               </div>
               <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-5">
-                <a className="block relative  rounded overflow-hidden">
+                {/* <a className="block relative  rounded overflow-hidden"> */}
                  <Link href="/product/lets_wear"> <img alt="ecommerce" className="h-[36vh] block m-auto" src="https://m.media-amazon.com/images/I/71hhaL6CM8L._SY741_.jpg" /></Link>
-                </a>
+                {/* </a> */}
                 <div className="mt-4 text-center">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Lets Wear</h2>
