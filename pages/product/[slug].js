@@ -1,8 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 export default function Slug() {
   const router = useRouter()
+  const {slug} = router.query
+  const [pin, setPin] = useState("");
+  const [servicability, setServicability] = useState();
+
+  const checkPincode=async()=>{
+    let pins = await fetch("http://localhost:3000/api/pincode");
+    let pinsJson = await  pins.json();
+    
+    if(pinsJson.includes(parseInt(pin))){
+      setServicability(true)
+    }
+    else{
+      setServicability(false)
+    }
+    
+  }
+
+  const changePin =(e)=>{
+    setPin(e.target.value)
+  }
+
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -83,6 +105,16 @@ export default function Slug() {
                     </svg>
                   </button>
                 </div>
+                <div className="pincode mt-6 flex space-x-2">
+                  <input type="text" onChange={changePin} placeholder='Check your pincode here' className='p-2 border-2 focus:outline-none' value={pin} />
+                  <button className="flex ml-10 text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded" onClick={checkPincode}>Check</button>
+                </div>
+                {!servicability&& servicability !=null&&<div className="status mt-2 text-sm text-red-600">
+                  Sorry! we do not deliver to this location yet
+                </div>}
+                {servicability&& servicability !=null&&<div className="status mt-2 text-sm text-green-600">
+                  Yeh! you are in our reaching zone
+                </div>}
               </div>
           </div>
         </div>
