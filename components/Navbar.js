@@ -7,7 +7,8 @@ import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { IoBagCheckOutline } from "react-icons/io5";
 
-const Navbar = () => {
+const Navbar = ({cart, addTocart, removeFromcart, clearcart, subTotal}) => {
+  // console.log({cart, addTocart, removeFromcart, clearcart, subTotal})
   const toggleCart = () => {
     if (ref.current.classList.contains('translate-x-full')) {
       ref.current.classList.remove('translate-x-full')
@@ -36,17 +37,18 @@ const Navbar = () => {
         <h2 className="font-bold text-xl text-center">My cart</h2>
         <span className="absolute top-2 right-4 font-bold text-3xl cursor-pointer text-pink-700" onClick={toggleCart}><IoMdCloseCircleOutline /></span>
         <ol className='list-decimal font-semibold'>
-          <li>
+          {Object.keys(cart).length == 0 && <div className='my-4 font-normal'>No item in the cart</div>}
+          { Object.keys(cart).map((k)=>{return<li key={k}>
             <div className="item flex space-x-2 my-5">
-              <div className='w2/3 font-semibold'>T-Shirt Lets werar the code</div>
-              <div className='font-semibold flex justify-center items-center'><FaMinus className='mx-3 text-sm cursor-pointer  text-pink-700'/> 1 <FaPlus className='mx-3 text-sm cursor-pointer  text-pink-700' /></div>
+              <div className='w2/3 font-semibold'>{cart[k].name}</div>
+              <div className='font-semibold flex justify-center items-center'><FaMinus onClick={()=>removeFromcart(k,1,cart[k].price, cart[k].name, cart[k].size, cart[k].varient)} className='mx-3 text-sm cursor-pointer  text-pink-700'/> {cart[k].qty} <FaPlus onClick={()=>addTocart(k,1,cart[k].price, cart[k].name, cart[k].size, cart[k].varient)} className='mx-3 text-sm cursor-pointer  text-pink-700' /></div>
             </div>
-          </li>
+          </li>})}
           
         </ol>
         <div className="flex justify-between space-x-1">
 
-        <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-lg"> Clear cart</button>
+        <button onClick={clearcart} className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-lg"> Clear cart</button>
         <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-lg"><IoBagCheckOutline className='m-1'/> Checkout</button>
         </div>
       </div>
