@@ -68,12 +68,13 @@ const Checkout = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
                   </div>
                 </li>
               })}
+              <div className='text-left flex justify-end'>Total amount: <span className='ml-8'>₹{subTotal}</span></div>
 
             </ol>
             <div className="flex justify-center space-x-1">
 
               
-              <Link href='/index'><button className="flex mx-auto mt-4 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-lg"><IoBagCheckOutline className='m-1' /> Add More item</button></Link>
+              <Link href='/index'><button className="flex mx-auto mt-4 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-lg"><IoBagCheckOutline className='m-1' /> Pay ₹{subTotal}</button></Link>
             </div>
           </div>
 

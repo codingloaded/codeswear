@@ -12,6 +12,7 @@ export default function App({ Component, pageProps }) {
     try {
       if(localStorage.getItem("cart")){
         setCart(JSON.parse(localStorage.getItem("cart")))
+        saveCart(JSON.parse(localStorage.getItem("cart")))
       }
     } catch (error) {
       console.error(error);
@@ -38,7 +39,7 @@ export default function App({ Component, pageProps }) {
       newCart[itemCode] = {qty:1, price, name,size, varient}
     }
     setCart(newCart);
-    console.log(newCart)
+    // console.log(newCart)
     saveCart(newCart); 
   }
   
