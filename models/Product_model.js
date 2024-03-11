@@ -36,8 +36,12 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required : true
     },
-},{timestamps:true})
+},{timestamps:true});
+mongoose.models = {}
 
-const productModel = mongoose.model('product',productSchema)
+export default mongoose.model('product',productSchema)
 
-export default productModel
+
+// const ProductModel = mongoose.model('product',productSchema)
+
+// export default ProductModel
