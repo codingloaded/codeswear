@@ -27,6 +27,7 @@ const Navbar = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
       <div className="nav">
         <ul className='flex space-x-3'>
           <li><Link href="/tshirts">T-Shirts</Link></li>
+          <li><Link href="/tshirt2">T-Shirts2</Link></li>
           <li><Link href="/hoodies">Hoodies</Link></li>
           <li><Link href="/mugs">Mugs</Link></li>
           <li><Link href="/stickers">Stickers</Link></li>
