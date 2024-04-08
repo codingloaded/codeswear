@@ -63,7 +63,7 @@ const Checkout = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
               {Object.keys(cart).map((k) => {
                 return <li key={k}>
                   <div className="item flex space-x-2 my-5 justify-between">
-                    <div className=' font-semibold'>{cart[k].name}</div>
+                    <div className=' font-semibold'>{cart[k].name} - {cart[k].size}/{cart[k].varient}</div>
                     <div className='font-semibold flex justify-center items-center'><FaMinus onClick={() => removeFromcart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].varient)} className='mx-3 text-sm cursor-pointer  text-pink-700' /> {cart[k].qty} <FaPlus onClick={() => addTocart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].varient)} className='mx-3 text-sm cursor-pointer  text-pink-700' /></div>
                   </div>
                 </li>

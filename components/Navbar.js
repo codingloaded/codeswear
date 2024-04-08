@@ -39,7 +39,7 @@ const Navbar = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
         <FaCartShopping className='md:text-xl text-2xl' onClick={toggleCart} />
       </div>
       {/* cart starts here  */}
-      <div ref={ref} className={`w-72 h-[100vh] sidecart absolute top-0 right-0 bg-pink-300 py-10 px-8 transform transition-transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div ref={ref} className={`w-80 h-[100vh] sidecart absolute overflow-y-scroll top-0 right-0 bg-pink-300 py-10 px-8 transform transition-transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'}`}>
         <h2 className="font-bold text-xl text-center">My cart</h2>
         <span className="absolute top-4 right-4 font-bold text-3xl cursor-pointer text-pink-700" onClick={toggleCart}><IoMdCloseCircleOutline /></span>
         <ol className='list-decimal font-semibold'>
@@ -47,7 +47,7 @@ const Navbar = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
           {Object.keys(cart).map((k) => {
             return <li key={k}>
               <div className="item flex space-x-2 my-5">
-                <div className='w2/3 font-semibold'>{cart[k].name}</div>
+                <div className='w2/3 font-semibold'>{cart[k].name} - {cart[k].size}/{cart[k].varient}</div>
                 <div className='font-semibold flex justify-center items-center'><FaMinus onClick={() => removeFromcart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].varient)} className='mx-3 text-sm cursor-pointer  text-pink-700' /> {cart[k].qty} <FaPlus onClick={() => addTocart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].varient)} className='mx-3 text-sm cursor-pointer  text-pink-700' /></div>
               </div>
             </li>
