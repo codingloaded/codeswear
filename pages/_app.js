@@ -59,6 +59,11 @@ export default function App({ Component, pageProps }) {
     saveCart(newCart); 
   }
 
+  const clearcart =()=>{
+    setCart({});
+    saveCart({})
+  }
+
  const buynow=(itemCode, qty, price, name, size, varient)=>{
    let newCart = {itemCode:{qty:1, price, name,size, varient}};
    setCart(newCart);
@@ -68,10 +73,7 @@ export default function App({ Component, pageProps }) {
  }
 
 
-  const clearcart =()=>{
-    setCart({});
-    saveCart({})
-  }
+
 
   return (
   <>

@@ -3,24 +3,49 @@ import ProductModel from "@/models/Product_model";
 import { useRouter } from 'next/router'
 import { useState } from 'react';
 import mongoose from 'mongoose';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function Slug({addTocart,clearcart, buynow, product, variant }) {
+export default function Slug({ addTocart, clearcart, buynow, product, variant }) {
   const router = useRouter()
   const { slug } = router.query
   const [pin, setPin] = useState("");
   const [servicability, setServicability] = useState();
   const [color, setColor] = useState(product.color)
-  const [size,setSize] = useState(product.size)
+  const [size, setSize] = useState(product.size)
 
   const checkPincode = async () => {
+    
     let pins = await fetch("http://localhost:3000/api/pincode");
     let pinsJson = await pins.json();
 
     if (pinsJson.includes(parseInt(pin))) {
       setServicability(true)
+      // toast.success('your pincode is servicable', {
+      //   position: "bottom-center",
+      //   autoClose: 1000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      //   transition: Bounce,
+      // });
     }
     else {
       setServicability(false)
+      // toast.error('your pincode is not servicable', {
+      //   position: "bottom-center",
+      //   autoClose: 1000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      //   transition: Bounce,
+      // });
     }
 
   }
@@ -29,7 +54,7 @@ export default function Slug({addTocart,clearcart, buynow, product, variant }) {
     setPin(e.target.value)
   }
 
-  const refreshVarient = (newsize, newcolor)=>{
+  const refreshVarient = (newsize, newcolor) => {
     let url = `http://localhost:3000/product/${variant[newcolor][newsize]['slug']}`;
     window.location = url;
   }
@@ -37,13 +62,26 @@ export default function Slug({addTocart,clearcart, buynow, product, variant }) {
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
+        {/* <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition: Bounce
+        /> */}
         <div className="container px-5 py-10 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-20 py-5 object-cover object-top rounded md:shadow-lg" src={product.img} />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">Wear the code</h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.title} - {product.size}/{product.color}</h1>
-{/* 
+              {/* 
               <div className="flex mb-4">
                 <span className="flex items-center">
                   <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-pink-500" viewBox="0 0 24 24">
@@ -86,24 +124,24 @@ export default function Slug({addTocart,clearcart, buynow, product, variant }) {
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
                   <span className="mr-3">Color</span>
-                  {Object.keys(variant).includes('white') && Object.keys(variant['white']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'white')}} className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>}
-                  {Object.keys(variant).includes('black') && Object.keys(variant['black']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'black')}} className="border-2 border-gray-300 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
-                  {Object.keys(variant).includes('yellow') && Object.keys(variant['yellow']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'yellow')}} className="border-2 border-gray-300 ml-1 bg-yellow-500 rounded-full w-6 h-6 focus:outline-none"></button>}
-                  {Object.keys(variant).includes('green') && Object.keys(variant['green']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'green')}} className="border-2 border-gray-300 ml-1 bg-green-500 rounded-full w-6 h-6 focus:outline-none"></button>}
-                  {Object.keys(variant).includes('light green') && Object.keys(variant['light green']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'light green')}} className="border-2 border-gray-300 ml-1 bg-green-200 rounded-full w-6 h-6 focus:outline-none"></button>}
-                  {Object.keys(variant).includes('blue') && Object.keys(variant['blue']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'blue')}} className="border-2 border-gray-300 ml-1 bg-blue-500 rounded-full w-6 h-6 focus:outline-none"></button>}
-                  {Object.keys(variant).includes('red') && Object.keys(variant['red']).includes(size) && <button onClick={(e)=>{refreshVarient(size,'red')}} className="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('white') && Object.keys(variant['white']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'white') }} className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('black') && Object.keys(variant['black']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'black') }} className="border-2 border-gray-300 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('yellow') && Object.keys(variant['yellow']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'yellow') }} className="border-2 border-gray-300 ml-1 bg-yellow-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('green') && Object.keys(variant['green']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'green') }} className="border-2 border-gray-300 ml-1 bg-green-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('light green') && Object.keys(variant['light green']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'light green') }} className="border-2 border-gray-300 ml-1 bg-green-200 rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('blue') && Object.keys(variant['blue']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'blue') }} className="border-2 border-gray-300 ml-1 bg-blue-500 rounded-full w-6 h-6 focus:outline-none"></button>}
+                  {Object.keys(variant).includes('red') && Object.keys(variant['red']).includes(size) && <button onClick={(e) => { refreshVarient(size, 'red') }} className="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>}
                 </div>
                 <div className="flex ml-6 items-center">
                   <span className="mr-3">Size</span>
                   <div className="relative">
-                    <select value={size} onChange={(e)=>{refreshVarient(e.target.value,color)}} className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
+                    <select value={size} onChange={(e) => { refreshVarient(e.target.value, color) }} className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
                       {Object.keys(variant[color]).includes('s') && <option value={'s'}>S</option>}
                       {Object.keys(variant[color]).includes('m') && <option value={'m'}>M</option>}
                       {Object.keys(variant[color]).includes('l') && <option value={'l'}>L</option>}
                       {Object.keys(variant[color]).includes('xl') && <option value={'xl'}>XL</option>}
                       {Object.keys(variant[color]).includes('xxl') && <option value={'xxl'}>XXL</option>}
-                    
+
                     </select>
                     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                       <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4" viewBox="0 0 24 24">
@@ -152,11 +190,11 @@ export async function getServerSideProps(context) {
   let variant = await ProductModel.find({ title: product.title })
   let colorSizeslug = {};
   for (let item of variant) {
-    if (Object.keys(colorSizeslug).includes(item.color)){
-      colorSizeslug[item.color][item.size] = {slug:item.slug};
-    }else{
-      colorSizeslug[item.color]={};
-      colorSizeslug[item.color][item.size] = {slug:item.slug};
+    if (Object.keys(colorSizeslug).includes(item.color)) {
+      colorSizeslug[item.color][item.size] = { slug: item.slug };
+    } else {
+      colorSizeslug[item.color] = {};
+      colorSizeslug[item.color][item.size] = { slug: item.slug };
     }
   }
 
