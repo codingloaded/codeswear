@@ -1,10 +1,73 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
+import { Content } from 'next/font/google'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
+const [name, setName] = useState("")
+const [email, setEmail] = useState("")
+const [password, setPassword] = useState("")
+const [cpassword, setCpassword] = useState("")
+
+const handelChange=(e)=>{
+ if(e.target.name == 'name'){
+  setName(e.target.value)
+ }
+ else if(e.target.name == 'email'){
+  setEmail((e.target.value))
+ }
+ else if(e.target.name == 'password'){
+  setPassword((e.target.value))
+ }
+ else if(e.target.name == 'cpassword'){
+  setCpassword((e.target.value))
+ }
+
+}
+const handelSubmit = async(e)=>{
+  e.preventDefault();
+  if(password==cpassword){
+    let res = await fetch("http://localhost:3000/api/signup",{
+      method :"POST",
+      headers :{
+        'Content-type' : 'application/json',
+      },
+      body : JSON.stringify({name,email,password})
+    })
+    res = await res.json();
+    console.log(res)
+  }else{
+    console.log("password didnt match")
+  }
+  // toast('🦄 Wow so easy!', {
+  //   position: "top-right",
+  //   autoClose: 5000,
+  //   hideProgressBar: false,
+  //   closeOnClick: true,
+  //   pauseOnHover: true,
+  //   draggable: true,
+  //   progress: undefined,
+  //   theme: "light",
+  //   transition: Bounce,
+  //   });
+}
+
   return (
     <>
+{/* <ToastContainer
+position="bottom-left"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
 
+/> */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -18,13 +81,14 @@ const Signup = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" method="POST" onSubmit={handelSubmit}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
                 Name
               </label>
               <div className="mt-2">
-                <input
+                <input onChange = {handelChange}
+                  value={name}
                   id="name"
                   name="name"
                   type="text"
@@ -39,7 +103,8 @@ const Signup = () => {
                 Email address
               </label>
               <div className="mt-2">
-                <input
+                <input onChange = {handelChange}
+                  value={email}
                   id="email"
                   name="email"
                   type="email"
@@ -55,10 +120,11 @@ const Signup = () => {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
-                
+
               </div>
               <div className="mt-2">
-                <input
+                <input onChange = {handelChange}
+                  value={password}
                   id="password"
                   name="password"
                   type="password"
@@ -68,15 +134,16 @@ const Signup = () => {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <label htmlFor="c-password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="cpassword" className="block text-sm font-medium leading-6 text-gray-900">
                   Confirm Password
                 </label>
-                
+
               </div>
               <div className="mt-2">
-                <input
-                  id="c-password"
-                  name="c-password"
+                <input onChange = {handelChange}
+                  value={cpassword}
+                  id="cpassword"
+                  name="cpassword"
                   type="password"
                   autoComplete="current-password"
                   required
