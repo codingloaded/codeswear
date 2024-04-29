@@ -21,31 +21,31 @@ export default function Slug({ addTocart, clearcart, buynow, product, variant })
 
     if (pinsJson.includes(parseInt(pin))) {
       setServicability(true)
-      // toast.success('your pincode is servicable', {
-      //   position: "bottom-center",
-      //   autoClose: 1000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   transition: Bounce,
-      // });
+      toast.success('your pincode is servicable', {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+       
+      });
     }
     else {
       setServicability(false)
-      // toast.error('your pincode is not servicable', {
-      //   position: "bottom-center",
-      //   autoClose: 1000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "light",
-      //   transition: Bounce,
-      // });
+      toast.error('your pincode is not servicable', {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        
+      });
     }
 
   }
@@ -62,7 +62,7 @@ export default function Slug({ addTocart, clearcart, buynow, product, variant })
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
-        {/* <ToastContainer
+        <ToastContainer
           position="bottom-center"
           autoClose={3000}
           hideProgressBar={false}
@@ -73,8 +73,7 @@ export default function Slug({ addTocart, clearcart, buynow, product, variant })
           draggable
           pauseOnHover
           theme="light"
-          transition: Bounce
-        /> */}
+        />
         <div className="container px-5 py-10 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-20 py-5 object-cover object-top rounded md:shadow-lg" src={product.img} />
