@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaCartShopping } from "react-icons/fa6";
@@ -8,8 +8,12 @@ import { FaMinus } from "react-icons/fa";
 import { IoBagCheckOutline } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 
-const Navbar = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
-  // console.log({cart, addTocart, removeFromcart, clearcart, subTotal})
+const Navbar = ({ user, cart, addTocart, removeFromcart, clearcart, subTotal, logout }) => {
+  const [dropdown, setDropdown] = useState(false)
+
+  const toggleDropdown = () => {
+    setDropdown(!dropdown)
+  }
   const toggleCart = () => {
     if (ref.current.classList.contains('translate-x-full')) {
       ref.current.classList.remove('translate-x-full')
@@ -34,8 +38,17 @@ const Navbar = ({ cart, addTocart, removeFromcart, clearcart, subTotal }) => {
         </ul>
       </div>
 
-      <div className="cart absolute right-5  mx-5 cursor-pointer flex" >
-        <Link href="/login"><MdAccountCircle className='md:text-xl text-2xl mx-2'/></Link>
+      <div className="cart absolute right-5  mx-5 cursor-pointer flex items-center" >
+        {user.value != null ? <MdAccountCircle className='md:text-xl text-2xl mx-2' onMouseOver={()=>setDropdown(true)} onMouseLeave={()=>setDropdown(false)} /> : <Link href="/login"><button className='bg-pink-500 text-white rounded-sm text-sm px-1 py-0.5 mr-1'>Login</button></Link>}
+        
+        {dropdown && <div className=" absolute right-6 bg-pink-300 top-5 rounded-md w-40 px-5" onMouseOver={()=>setDropdown(true)} onMouseLeave={()=>setDropdown(false)} >
+          <ul>
+            <Link href="/myaccount"><li className='py-1 text-sm hover:text-gray-100'>My Account</li></Link>
+            <Link href="/order"><li className='py-1 text-sm hover:text-gray-100'>Orders</li></Link>
+            <li className='py-1 text-sm hover:text-gray-100' onClick={logout}>Logout</li>
+          </ul>
+        </div>}
+
         <FaCartShopping className='md:text-xl text-2xl' onClick={toggleCart} />
       </div>
       {/* cart starts here  */}

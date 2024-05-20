@@ -3,15 +3,25 @@ import Navbar from '@/components/Navbar'
 import '@/styles/globals.css'
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
-
+import LoadingBar from 'react-top-loading-bar'
 
 export default function App({ Component, pageProps }) {
   const [cart,setCart] = useState({});
   const [subTotal, setSubTotal] = useState(0);
+  const [user, setUser] = useState({value:null})
+  const[key, setKey]= useState(0)
+  const [progress, setProgress] = useState(0)
   const router = useRouter();
 
+  const logout=()=>{
+    localStorage.removeItem("ecomToken")
+    setUser({value:null})
+    setKey(Math.random());
+  }
 
+  
   useEffect(()=>{
+    router.events.on('routeChangeComplete', ()=>{setProgress(100)})
     try {
       if(localStorage.getItem("cart")){
         setCart(JSON.parse(localStorage.getItem("cart")))
@@ -21,8 +31,12 @@ export default function App({ Component, pageProps }) {
       console.error(error);
       localStorage.clear()
     }
-    
-  },[])
+    const token = localStorage.getItem("ecomToken")
+    if(token){
+      setUser({value:token})
+    }
+    setKey(Math.random());
+  },[router.query])
 
   const saveCart=(myCart)=>{
     localStorage.setItem("cart", JSON.stringify(myCart));
@@ -77,7 +91,7 @@ export default function App({ Component, pageProps }) {
 
   return (
   <>
-  <Navbar cart = {cart} addTocart = {addTocart} removeFromcart = {removeFromcart} clearcart = {clearcart} subTotal = {subTotal} />
+  <Navbar key={key} logout={logout} user={user} cart = {cart} addTocart = {addTocart} removeFromcart = {removeFromcart} clearcart = {clearcart} subTotal = {subTotal} />
    <Component cart = {cart} addTocart = {addTocart} removeFromcart = {removeFromcart} clearcart = {clearcart} subTotal = {subTotal} buynow={buynow} {...pageProps} />
    <Footer/>
   </>

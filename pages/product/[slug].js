@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Slug({ addTocart, clearcart, buynow, product, variant }) {
+  console.log(variant)
   const router = useRouter()
   const { slug } = router.query
   const [pin, setPin] = useState("");
@@ -187,7 +188,7 @@ export async function getServerSideProps(context) {
 
   let product = await ProductModel.findOne({ slug: context.query.slug });
   let variant = await ProductModel.find({ title: product.title })
-  let colorSizeslug = {};
+  let colorSizeslug = {}; //{red:{xl:{slug:'lets-ecom-xl'}}} <-- demo object
   for (let item of variant) {
     if (Object.keys(colorSizeslug).includes(item.color)) {
       colorSizeslug[item.color][item.size] = { slug: item.slug };
